@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "https://meu-fluxo-back-1.onrender.com/api/",
+    baseURL: "https://laravel-app-production-893f.up.railway.app/api/",
     timeout: 5000
 })
 
