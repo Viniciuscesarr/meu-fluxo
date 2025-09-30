@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "https://meu-fluxo-back-1.onrender.com/api/",
+    baseURL: "http://localhost:8000/api/",
     timeout: 5000
 })
 
