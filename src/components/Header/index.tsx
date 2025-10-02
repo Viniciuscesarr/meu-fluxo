@@ -71,7 +71,7 @@ export default function Header() {
               </Link>
             </ul>
             <div className="flex flex-col gap-3 w-3/4">
-              <Link to="/login" className="text-[#265700] font-semibold border py-2 rounded">
+              <Link to="/login"  className="text-[#265700] font-semibold border py-2 rounded text-center">
                 Login
               </Link>
               <button className="bg-[#09B900] hover:brightness-75 text-white py-2 rounded">
