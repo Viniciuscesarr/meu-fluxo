@@ -41,7 +41,7 @@ export default function QuemSomos() {
       <Header />
       
       <div className="min-h-screen bg-white">
-        {/* Hero Section */}
+      
         <div className="bg-gradient-to-r from-[#15C64F] to-[#0EA83C] text-white py-20">
           <div className="max-w-6xl mx-auto px-4 text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -54,7 +54,6 @@ export default function QuemSomos() {
           </div>
         </div>
 
-        {/* Nossa História */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -99,7 +98,6 @@ export default function QuemSomos() {
           </div>
         </section>
 
-        {/* Missão, Visão e Valores */}
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
@@ -129,7 +127,6 @@ export default function QuemSomos() {
           </div>
         </section>
 
-        {/* O que fazemos */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
@@ -196,8 +193,7 @@ export default function QuemSomos() {
             </div>
           </div>
         </section>
-
-        {/* Depoimentos */}
+        
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">

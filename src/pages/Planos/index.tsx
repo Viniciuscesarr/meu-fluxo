@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../../components/Header";
-import { Check, Star, Zap, Crown, Users, BarChart3, Shield, Clock, ArrowRight } from "lucide-react";
+import { Check, Star, Zap, Crown, Users, BarChart3, ArrowRight } from "lucide-react";
 
 export default function Planos() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -115,7 +115,7 @@ export default function Planos() {
       <Header />
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-        {/* Hero Section */}
+      
         <div className="bg-gradient-to-r from-[#15C64F] to-[#0EA83C] text-white py-20">
           <div className="max-w-6xl mx-auto px-4 text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -126,7 +126,6 @@ export default function Planos() {
               Comece grátis e escale conforme cresce.
             </p>
             
-            {/* Toggle Anual/Mensal */}
             <div className="flex items-center justify-center gap-4 mb-8">
               <span className={`text-lg ${!isAnnual ? 'text-white font-semibold' : 'text-green-200'}`}>
                 Mensal
@@ -155,7 +154,6 @@ export default function Planos() {
           </div>
         </div>
 
-        {/* Planos */}
         <div className="max-w-7xl mx-auto px-4 py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {plans.map((plan, index) => {
@@ -180,7 +178,7 @@ export default function Planos() {
                   )}
 
                   <div className="p-8">
-                    {/* Header do Plano */}
+                 
                     <div className="text-center mb-8">
                       <div className={`w-16 h-16 ${colors.light} rounded-full flex items-center justify-center mx-auto mb-4`}>
                         <plan.icon className={`w-8 h-8 ${colors.text}`} />
@@ -192,7 +190,7 @@ export default function Planos() {
                         {plan.description}
                       </p>
                       
-                      {/* Preço */}
+                     
                       <div className="mb-6">
                         <div className="flex items-baseline justify-center">
                           <span className="text-5xl font-bold text-gray-800">
@@ -210,7 +208,6 @@ export default function Planos() {
                       </div>
                     </div>
 
-                    {/* Features */}
                     <div className="space-y-4 mb-8">
                       {plan.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-start gap-3">
@@ -220,7 +217,6 @@ export default function Planos() {
                       ))}
                     </div>
 
-                    {/* Limitações */}
                     {plan.limitations.length > 0 && (
                       <div className="mb-8">
                         <div className="text-sm text-gray-500 mb-2">Limitações:</div>
@@ -237,7 +233,6 @@ export default function Planos() {
                       </div>
                     )}
 
-                    {/* Botão CTA */}
                     <button
                       className={`w-full py-4 px-6 ${colors.bg} ${colors.hover} text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 ${
                         plan.popular ? 'ring-2 ring-green-500 ring-offset-2' : ''
@@ -253,7 +248,6 @@ export default function Planos() {
           </div>
         </div>
 
-        {/* Comparação de Recursos */}
         <section className="bg-white py-20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
@@ -299,7 +293,6 @@ export default function Planos() {
           </div>
         </section>
 
-        {/* FAQ */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-16">
@@ -343,7 +336,6 @@ export default function Planos() {
           </div>
         </section>
 
-        {/* CTA Final */}
         <section className="py-20 bg-gradient-to-r from-[#15C64F] to-[#0EA83C] text-white">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-6">
