@@ -95,97 +95,193 @@ export default function Transactions() {
     <>
       <HeaderAuth select1={false} select2={false} select3={true} />
       <div className="max-w-6xl mx-auto px-4 mt-20">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold">Transações</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Transações</h1>
           <div className="text-sm text-gray-500">{filtered.length} itens</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow mb-4 grid gap-3 md:grid-cols-4 border border-gray-100">
-          <select className="border rounded px-3 py-2" value={filters.type} onChange={(e) => setFilters({ ...filters, type: e.target.value as any })}>
-            <option value="">Tipo: Todos</option>
-            <option value="income">Receita</option>
-            <option value="expense">Despesa</option>
-          </select>
-          <select className="border rounded px-3 py-2" value={filters.wallet_id} onChange={(e) => setFilters({ ...filters, wallet_id: e.target.value })}>
-            <option value="">Carteira: Todas</option>
-            {wallets.map(w => (<option key={w.id} value={w.id}>{w.name}</option>))}
-          </select>
-          <select className="border rounded px-3 py-2" value={filters.categorie_id} onChange={(e) => setFilters({ ...filters, categorie_id: e.target.value })}>
-            <option value="">Categoria: Todas</option>
-            {categories.map(c => (<option key={c.id} value={c.id}>{c.name}</option>))}
-          </select>
-          <div className="flex gap-2">
-            <input className="border rounded px-3 py-2 w-full" value={filters.month} onChange={(e) => setFilters({ ...filters, month: e.target.value })} placeholder="MM" />
-            <input className="border rounded px-3 py-2 w-full" value={filters.year} onChange={(e) => setFilters({ ...filters, year: e.target.value })} placeholder="AAAA" />
+        <div className="bg-white p-4 rounded-lg shadow mb-6 border border-gray-100">
+          <h2 className="text-lg font-semibold text-gray-700 mb-4">Filtros</h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <select className="border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent" value={filters.type} onChange={(e) => setFilters({ ...filters, type: e.target.value as any })}>
+              <option value="">Tipo: Todos</option>
+              <option value="income">Receita</option>
+              <option value="expense">Despesa</option>
+            </select>
+            <select className="border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent" value={filters.wallet_id} onChange={(e) => setFilters({ ...filters, wallet_id: e.target.value })}>
+              <option value="">Carteira: Todas</option>
+              {wallets.map(w => (<option key={w.id} value={w.id}>{w.name}</option>))}
+            </select>
+            <select className="border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent" value={filters.categorie_id} onChange={(e) => setFilters({ ...filters, categorie_id: e.target.value })}>
+              <option value="">Categoria: Todas</option>
+              {categories.map(c => (<option key={c.id} value={c.id}>{c.name}</option>))}
+            </select>
+            <div className="flex gap-2">
+              <input 
+                className="border rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                value={filters.month} 
+                onChange={(e) => setFilters({ ...filters, month: e.target.value })} 
+                placeholder="MM" 
+                maxLength={2}
+              />
+              <input 
+                className="border rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                value={filters.year} 
+                onChange={(e) => setFilters({ ...filters, year: e.target.value })} 
+                placeholder="AAAA" 
+                maxLength={4}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border border-gray-100">
+        <div className="bg-white rounded-lg shadow border border-gray-100">
           {loading ? (
-            <p className="animate-pulse text-gray-400">Carregando...</p>
+            <div className="p-8 text-center">
+              <div className="animate-spin w-8 h-8 border-4 border-t-green-500 rounded-full mx-auto mb-4"></div>
+              <p className="text-gray-400">Carregando transações...</p>
+            </div>
           ) : (
             <>
-              <div className="flex flex-wrap items-center justify-between mb-4 gap-3">
-                <div className="flex gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-green-50 text-green-700 px-3 py-1 text-sm border border-green-200">
-                    <span className="w-2 h-2 rounded-full bg-green-500" />
-                    Receitas: <strong>{formatMoney(incomeTotal)}</strong>
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-700 px-3 py-1 text-sm border border-red-200">
-                    <span className="w-2 h-2 rounded-full bg-red-500" />
-                    Despesas: <strong>{formatMoney(expenseTotal)}</strong>
-                  </span>
+         
+              <div className="p-4 border-b border-gray-100">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-green-50 text-green-700 px-4 py-2 text-sm border border-green-200">
+                      <span className="w-2 h-2 rounded-full bg-green-500" />
+                      Receitas: <strong>{formatMoney(incomeTotal)}</strong>
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-700 px-4 py-2 text-sm border border-red-200">
+                      <span className="w-2 h-2 rounded-full bg-red-500" />
+                      Despesas: <strong>{formatMoney(expenseTotal)}</strong>
+                    </span>
+                  </div>
+                  <div className="text-xs text-gray-400">{formatDate(new Date().toISOString())}</div>
                 </div>
-                <div className="text-xs text-gray-400">{formatDate(new Date().toISOString())}</div>
               </div>
-              <ul className="divide-y">
+
+              <div className="divide-y divide-gray-100">
                 {filtered.map(t => (
-                  <li key={t.id} className="py-3 flex items-center justify-between">
-                    <div className="flex gap-4 items-center">
-                      <span className={`text-sm font-semibold ${t.type === 'income' ? 'text-green-600' : 'text-red-500'}`}>
-                        {t.type === 'income' ? '+ ' : '- '}{formatMoney(Number(t.amount) || 0)}
-                      </span>
-                      <span className="text-gray-600 text-sm">{t.wallet?.name}</span>
-                      {t.categorie?.name && <span className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs border border-gray-200">{t.categorie?.name}</span>}
-                      <span className="text-gray-400 text-xs">{formatDate(t.created_at)}</span>
+                  <div key={t.id} className="p-4 hover:bg-gray-50 transition-colors">
+                 
+                    <div className="block sm:hidden">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`text-lg font-bold ${t.type === 'income' ? 'text-green-600' : 'text-red-500'}`}>
+                              {t.type === 'income' ? '+ ' : '- '}{formatMoney(Number(t.amount) || 0)}
+                            </span>
+                          </div>
+                          <div className="space-y-1">
+                            <div className="text-sm text-gray-600">
+                              <strong>Carteira:</strong> {t.wallet?.name}
+                            </div>
+                            {t.categorie?.name && (
+                              <div className="text-sm text-gray-600">
+                                <strong>Categoria:</strong> {t.categorie.name}
+                              </div>
+                            )}
+                            <div className="text-xs text-gray-400">
+                              {formatDate(t.created_at)}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 justify-end">
+                        <button
+                          type="button"
+                          className="px-3 py-1.5 text-xs rounded-md bg-blue-500 hover:bg-blue-600 text-white transition-colors"
+                          onClick={() => {
+                            setEditing(t);
+                            setForm({
+                              type: t.type,
+                              amount: String(t.amount),
+                              wallet_id: String(t.wallet?.id ?? ''),
+                              categorie_id: String(t.categorie?.id ?? ''),
+                              created_at: new Date(t.created_at).toISOString().slice(0, 10),
+                            });
+                            setEditOpen(true);
+                          }}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          type="button"
+                          className="px-3 py-1.5 text-xs rounded-md bg-red-500 hover:bg-red-600 text-white transition-colors"
+                          onClick={async () => {
+                            if (!confirm('Deseja remover esta transação?')) return;
+                            try {
+                              await api.delete(`/transaction/${t.id}`, { headers: { Authorization: `Bearer ${token}` } });
+                              setTransactions(prev => prev.filter(x => x.id !== t.id));
+                            } catch (e) { console.log(e); }
+                          }}
+                        >
+                          Excluir
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        className="px-2 py-1 text-xs rounded bg-blue-500 hover:bg-blue-600 text-white"
-                        onClick={() => {
-                          setEditing(t);
-                          setForm({
-                            type: t.type,
-                            amount: String(t.amount),
-                            wallet_id: String(t.wallet?.id ?? ''),
-                            categorie_id: String(t.categorie?.id ?? ''),
-                            created_at: new Date(t.created_at).toISOString().slice(0, 10),
-                          });
-                          setEditOpen(true);
-                        }}
-                      >Editar</button>
-                      <button
-                        type="button"
-                        className="px-2 py-1 text-xs rounded bg-red-500 hover:bg-red-600 text-white"
-                        onClick={async () => {
-                          if (!confirm('Deseja remover esta transação?')) return;
-                          try {
-                            await api.delete(`/transaction/${t.id}`, { headers: { Authorization: `Bearer ${token}` } });
-                            setTransactions(prev => prev.filter(x => x.id !== t.id));
-                          } catch (e) { console.log(e); }
-                        }}
-                      >Excluir</button>
+
+                    <div className="hidden sm:flex items-center justify-between">
+                      <div className="flex items-center gap-6 flex-1 min-w-0">
+                        <span className={`text-sm font-semibold whitespace-nowrap ${t.type === 'income' ? 'text-green-600' : 'text-red-500'}`}>
+                          {t.type === 'income' ? '+ ' : '- '}{formatMoney(Number(t.amount) || 0)}
+                        </span>
+                        <span className="text-gray-600 text-sm truncate">{t.wallet?.name}</span>
+                        {t.categorie?.name && (
+                          <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700 text-xs border border-gray-200 whitespace-nowrap">
+                            {t.categorie.name}
+                          </span>
+                        )}
+                        <span className="text-gray-400 text-xs whitespace-nowrap">{formatDate(t.created_at)}</span>
+                      </div>
+                      <div className="flex gap-2 ml-4">
+                        <button
+                          type="button"
+                          className="px-3 py-1.5 text-xs rounded-md bg-blue-500 hover:bg-blue-600 text-white transition-colors"
+                          onClick={() => {
+                            setEditing(t);
+                            setForm({
+                              type: t.type,
+                              amount: String(t.amount),
+                              wallet_id: String(t.wallet?.id ?? ''),
+                              categorie_id: String(t.categorie?.id ?? ''),
+                              created_at: new Date(t.created_at).toISOString().slice(0, 10),
+                            });
+                            setEditOpen(true);
+                          }}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          type="button"
+                          className="px-3 py-1.5 text-xs rounded-md bg-red-500 hover:bg-red-600 text-white transition-colors"
+                          onClick={async () => {
+                            if (!confirm('Deseja remover esta transação?')) return;
+                            try {
+                              await api.delete(`/transaction/${t.id}`, { headers: { Authorization: `Bearer ${token}` } });
+                              setTransactions(prev => prev.filter(x => x.id !== t.id));
+                            } catch (e) { console.log(e); }
+                          }}
+                        >
+                          Excluir
+                        </button>
+                      </div>
                     </div>
-                  </li>
+                  </div>
                 ))}
+                
                 {filtered.length === 0 && (
-                  <li className="py-10 text-center text-gray-400">
-                    <div className="mx-auto w-10 h-10 rounded-full bg-gray-100 border border-gray-200 mb-2" />
-                    Nenhuma transação encontrada
-                  </li>
+                  <div className="py-16 text-center text-gray-400">
+                    <div className="mx-auto w-16 h-16 rounded-full bg-gray-100 border border-gray-200 mb-4 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-medium text-gray-700 mb-2">Nenhuma transação encontrada</h3>
+                    <p className="text-gray-500">Ajuste os filtros ou adicione uma nova transação</p>
+                  </div>
                 )}
-              </ul>
+              </div>
             </>
           )}
         </div>
