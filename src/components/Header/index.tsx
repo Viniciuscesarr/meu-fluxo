@@ -60,15 +60,15 @@ export default function Header() {
         {Open && (
           <div className="absolute top-20 left-0 w-full bg-white shadow-md flex flex-col items-center gap-5 py-6 md:hidden">
             <ul className="flex flex-col gap-4">
-              <li className="text-[#A7A2A2] hover:brightness-75 cursor-pointer">
+              <Link to="/sobre-nos" className="text-[#A7A2A2] hover:brightness-75 cursor-pointer">
                 Quem somos
-              </li>
-              <li className="text-[#A7A2A2] hover:brightness-75 cursor-pointer">
+              </Link>
+              <Link to="/contato" className="text-[#A7A2A2] hover:brightness-75 cursor-pointer">
                 Contato
-              </li>
-              <li className="text-[#A7A2A2] hover:brightness-75 cursor-pointer">
+              </Link>
+              <Link to="/planos" className="text-[#A7A2A2] hover:brightness-75 cursor-pointer">
                 Planos
-              </li>
+              </Link>
             </ul>
             <div className="flex flex-col gap-3 w-3/4">
               <button className="text-[#265700] font-semibold border py-2 rounded">
