@@ -73,8 +73,23 @@ export default function Transactions() {
     });
   }, [transactions, filters]);
 
-  const incomeTotal = useMemo(() => filtered.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0), [filtered]);
-  const expenseTotal = useMemo(() => filtered.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0), [filtered]);
+  const incomeTotal = useMemo(() => {
+    return filtered
+      .filter(t => t.type === 'income')
+      .reduce((s, t) => {
+        const amount = Number(t.amount);
+        return s + (isFinite(amount) && !isNaN(amount) ? amount : 0);
+      }, 0);
+  }, [filtered]);
+  
+  const expenseTotal = useMemo(() => {
+    return filtered
+      .filter(t => t.type === 'expense')
+      .reduce((s, t) => {
+        const amount = Number(t.amount);
+        return s + (isFinite(amount) && !isNaN(amount) ? amount : 0);
+      }, 0);
+  }, [filtered]);
 
   return (
     <>
@@ -128,7 +143,7 @@ export default function Transactions() {
                   <li key={t.id} className="py-3 flex items-center justify-between">
                     <div className="flex gap-4 items-center">
                       <span className={`text-sm font-semibold ${t.type === 'income' ? 'text-green-600' : 'text-red-500'}`}>
-                        {t.type === 'income' ? '+ ' : '- '}{formatMoney(t.amount)}
+                        {t.type === 'income' ? '+ ' : '- '}{formatMoney(Number(t.amount) || 0)}
                       </span>
                       <span className="text-gray-600 text-sm">{t.wallet?.name}</span>
                       {t.categorie?.name && <span className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs border border-gray-200">{t.categorie?.name}</span>}

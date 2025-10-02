@@ -44,7 +44,7 @@ export default function Profile() {
                   const token = localStorage.getItem("token");
                   await api.post("/logout", null, { headers: { Authorization: `Bearer ${token}` } });
                 } catch (e) {
-                  // ignore
+                  
                 } finally {
                   localStorage.removeItem("token");
                   window.location.href = "/login";

@@ -6,6 +6,8 @@ interface Props {
   select1?: boolean;
   select2?: boolean;
   select3?: boolean;
+  select4?: boolean;
+  select5?: boolean;
 }
 
 export default function HeaderAuth(props: Props) {
@@ -55,6 +57,22 @@ export default function HeaderAuth(props: Props) {
             }`}
           >
             Transações
+          </Link>
+          <Link
+            to="/auth/categories"
+            className={`hover:cursor-pointer pb-1 ${
+              props.select4 ? "border-b-4 border-white" : ""
+            }`}
+          >
+            Categorias
+          </Link>
+          <Link
+            to="/auth/wallets"
+            className={`hover:cursor-pointer pb-1 ${
+              props.select5 ? "border-b-4 border-white" : ""
+            }`}
+          >
+            Carteiras
           </Link>
         </ul>
       </nav>
@@ -150,6 +168,24 @@ export default function HeaderAuth(props: Props) {
             }`}
           >
             Transações
+          </Link>
+          <Link
+            to="/auth/categories"
+            onClick={() => setOpen(false)}
+            className={`hover:cursor-pointer pb-1 ${
+              props.select4 ? "border-b-4 border-white" : ""
+            }`}
+          >
+            Categorias
+          </Link>
+          <Link
+            to="/auth/wallets"
+            onClick={() => setOpen(false)}
+            className={`hover:cursor-pointer pb-1 ${
+              props.select5 ? "border-b-4 border-white" : ""
+            }`}
+          >
+            Carteiras
           </Link>
           <div className="flex gap-5 mt-4">
             <button onClick={() => { navigate('/auth/dashboard'); setOpen(false); }}>

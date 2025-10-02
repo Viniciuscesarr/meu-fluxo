@@ -12,6 +12,11 @@ export function getDateLocale(): string {
 }
 
 export function formatMoney(value: number): string {
+  // Verificar se o valor é válido (não é NaN, null, undefined ou Infinity)
+  if (!isFinite(value) || isNaN(value)) {
+    return 'R$ 0,00'; // Valor padrão para BRL
+  }
+  
   const currency = getCurrency();
   const locale = currency === 'BRL' ? 'pt-BR' : (currency === 'USD' ? 'en-US' : 'de-DE');
   return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(value);

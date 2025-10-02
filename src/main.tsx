@@ -13,8 +13,11 @@ import Profile from "./pages/auth/Profile/index.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./pages/Register/index.tsx";
 import ProtectedRoute from "./pages/auth/ProtectedRoute";
+import Wallet from "./pages/auth/Wallets";
+import Categories from "./pages/auth/Categories";
 
-// Tema removido a pedido: sem inicialização de tema aqui
+
+
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -31,6 +34,8 @@ const router = createBrowserRouter([
       { path: "/auth/transactions", element: <Transactions /> },
       { path: "/auth/reports", element: <Reports /> },
       { path: "/auth/profile", element: <Profile /> },
+      { path: "/auth/wallets", element: <Wallet /> },
+      { path: "/auth/categories", element: <Categories /> },
     ],
   },
 ]);
